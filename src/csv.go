@@ -15,7 +15,8 @@ func (a *App) writeCSV() {
 	followers := a.sortKeys(a.followers)
 
 	// Open the CSV file for writing.
-	fh, err := os.Create("follower-lists.csv")
+	filename := fmt.Sprintf("follower-lists-%s.csv", a.username)
+	fh, err := os.Create(filename)
 	if err != nil {
 		log.Panicf("Can't create CSV output: %s", err)
 	}
@@ -43,7 +44,7 @@ func (a *App) writeCSV() {
 		log.Fatal(err)
 	}
 
-	fmt.Println("CSV dumped to: follow-lists.csv")
+	fmt.Printf("CSV dumped to: %s\n", filename)
 }
 
 // sortKeys returns the sorted keys from the follower/ing lists.

@@ -110,10 +110,11 @@ func (a *App) tellItHowItIs() {
 	)
 
 	// Show them the list.
-	fmt.Printf("You are following these Instagram users who don't follow you back:\n\n" +
-		strings.Join(a.leeches, ", ") +
-		"\n\n" +
-		"If you'd like to compare details, open `follower-lists.csv`.\n\n",
+	fmt.Printf("You are following these Instagram users who don't follow you back:\n\n"+
+		strings.Join(a.leeches, ", ")+
+		"\n\n"+
+		"If you'd like to compare details, open `follower-lists-%s.csv`.\n\n",
+		a.username,
 	)
 
 	// Sum up the numbers.

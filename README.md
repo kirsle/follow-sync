@@ -12,9 +12,9 @@ following lists, and provides a summary and a choice of action: go ahead and
 unfollow the users who don't follow you back, or exit and you can review the
 data on your own.
 
-This program creates a CSV file named `follower-lists.csv` that contains your
-full list, so you can examine what's on your lists or as a backup in case you
-want to know who you unfollowed later.
+This program creates a CSV file named `follower-lists-$USERNAME.csv` that
+contains your full list, so you can examine what's on your lists or as a backup
+in case you want to know who you unfollowed later.
 
 ```
 $ go install -u github.com/kirsle/follow-sync
@@ -27,7 +27,7 @@ Just run the `follow-sync` executable. It will prompt for your username and
 password (non-echoed output), collect your friend lists and compare them,
 and print out a summary.
 
-At this point you can open the `follower-lists.csv` in your favorite
+At this point you can open the `follower-lists-$USERNAME.csv` in your favorite
 spreadsheet program if you want to inspect the Following and Follower lists.
 
 The program will prompt for final verification before it goes ahead and begins
