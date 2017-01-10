@@ -47,6 +47,14 @@ go build -ldflags '-s' -o "$root/$binname"
 # Copy supplemental files.
 cp README.md screenshot.png LICENSE "$root/"
 
+# Windows batch file for keeping the terminal open.
+if [[ $target == "windows" ]]; then
+	echo "@echo off" > "$root/run-me.bat"
+	echo "REM This batch script just runs the program but keeps the console open when it exits." >> "$root/run-me.bat"
+	echo "follow-sync" >> "$root/run-me.bat"
+	echo "pause" >> "$root/run-me.bat"
+fi
+
 # Zip it up.
 cd "$root"
 zip "follow-sync-${VERSION}-${target}-${arch}.zip" *
