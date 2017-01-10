@@ -54,7 +54,7 @@ func (a *App) massUnfollow() {
 
 		// Unfollow.
 		userID := a.getUserId(username)
-		fmt.Printf("- [%d of %d] Unfollow: %s\t\t(UID %s)\n", reaped, remaining, username, userID)
+		log.Printf("- [%d of %d] Unfollow: %s\t\t(UID %s)\n", reaped, remaining, username, userID)
 
 		_, err := a.api.UnFollow(userID)
 		if err != nil {
@@ -62,7 +62,7 @@ func (a *App) massUnfollow() {
 		}
 
 		reaped++
-		time.Sleep(2 * time.Second)
+		time.Sleep(time.Duration(a.Wait) * time.Second)
 	}
 }
 

@@ -18,8 +18,12 @@ in case you want to know who you unfollowed later.
 
 ```
 $ go install -u github.com/kirsle/follow-sync
-$ follow-sync
+$ follow-sync [-wait DELAY=60]
 ```
+
+By default, this program waits 60 seconds between each unfollow. This is the
+safest rate to stay under Instagram's rate limit, but you can override it if
+needed. See [Caveats](#caveats) below.
 
 # Program Usage
 
@@ -40,8 +44,19 @@ API functions this program calls will panic if it gets an error. No big deal:
 you can just wait a few minutes and run the program again and it should pick
 up where it left off.
 
-To *try* and combat the rate limit error, the program intentionally waits
-2 seconds between unfollows.
+The safest rate limit according to what documentation I could find is to
+not unfollow more than 60 profiles per hour. As such, this program has a 60
+second delay between each unfollow action by default.
+
+I've seen with shorter delays, such as 2 seconds, that I was able to unfollow
+between 600 and 900 users before the API rate limited me.
+
+To change the delay between unfollows, use the `-wait` command line option.
+For example:
+
+```
+$ follow-sync -wait 2
+```
 
 # License
 

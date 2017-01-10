@@ -55,5 +55,6 @@ func getPassword(question string) string {
 		panic(err)
 	}
 
+	fmt.Println("")
 	return strings.TrimSpace(string(bytePassword))
 }

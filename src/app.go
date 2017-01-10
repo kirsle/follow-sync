@@ -9,8 +9,12 @@ import (
 	"github.com/ahmdrz/goinsta"
 )
 
+const Version = "0.1.0"
+
 // Type App is the Follow-Sync Application.
 type App struct {
+	// User configurable.
+	Wait      int // How long to wait between unfollows.
 	api       *goinsta.Instagram
 	username  string
 	password  string
@@ -20,35 +24,39 @@ type App struct {
 	leeches   []string        // users we follow who don't follow us back
 }
 
-// Run is the entry point to the program.
-func Run() {
-	app := &App{
+// New creates a new app.
+func New() *App {
+	return &App{
+		Wait:      60,
 		following: map[string]bool{},
 		followers: map[string]bool{},
 		leeches:   []string{},
 	}
+}
 
+// Run is the entry point to the program.
+func (a *App) Run() {
 	// Ask for login.
-	app.login()
-	defer app.logout()
+	a.login()
+	defer a.logout()
 
 	// Collect data.
 	log.Println("Beginning the data collection process...")
-	app.getFollowers()
-	app.getFollowing()
-	app.writeCSV()
+	a.getFollowers()
+	a.getFollowing()
+	a.writeCSV()
 
 	// Compare data.
 	log.Println("Comparing the lists to each other...")
-	app.compareLists()
+	a.compareLists()
 
 	// Lay it all out there. If the user doesn't consent to the mass
 	// unfollow that will come, the program exits here.
 	log.Println("Telling it how it is...")
-	app.tellItHowItIs()
+	a.tellItHowItIs()
 
 	// Reap the leeches.
-	app.massUnfollow()
+	a.massUnfollow()
 }
 
 // login asks the user for their credentials and logs them in via Instagram's
