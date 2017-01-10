@@ -58,6 +58,25 @@ For example:
 $ follow-sync -wait 2
 ```
 
+# Distributing
+
+The shell script `dist.sh` can cross-compile the binary for multiple platforms.
+
+Full list of examples for the platforms I export to:
+
+```
+./dist.sh linux 64
+./dist.sh linux 32
+
+./dist.sh windows 64
+./dist.sh windows 32
+
+./dist.sh darwin 64
+```
+
+Distributables are put into appropriately-named subdirectories of the `dist/`
+folder, and zipped up along with other project metafiles (README, etc.)
+
 # License
 
 ```

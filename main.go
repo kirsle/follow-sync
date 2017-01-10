@@ -14,7 +14,7 @@ func main() {
 	flag.Parse()
 
 	if *version {
-		fmt.Printf("follow-sync v%s\n", app.Version)
+		fmt.Println(app.Version)
 		os.Exit(0)
 	}
 
