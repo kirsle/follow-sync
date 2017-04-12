@@ -9,7 +9,7 @@ import (
 	"github.com/ahmdrz/goinsta"
 )
 
-const Version = "0.1.0"
+const Version = "0.2.0"
 
 // Type App is the Follow-Sync Application.
 type App struct {
