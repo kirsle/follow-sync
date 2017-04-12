@@ -73,5 +73,5 @@ func (a *App) getUserId(username string) string {
 		log.Panicf("Can't getUserId %s: %s", username, err)
 	}
 
-	return strconv.Itoa(user.User.Pk)
+	return strconv.Itoa(int(user.User.Pk))
 }
