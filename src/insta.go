@@ -42,8 +42,8 @@ func (a *App) massUnfollow() {
 
 	// Show the progress as we go.
 	var (
-		reaped    int = 1
-		remaining int = len(a.leeches)
+		reaped    = 1
+		remaining = len(a.leeches)
 	)
 
 	for _, username := range a.leeches {
@@ -53,10 +53,16 @@ func (a *App) massUnfollow() {
 		}
 
 		// Unfollow.
-		userID := a.getUserId(username)
-		log.Printf("- [%d of %d] Unfollow: %s\t\t(UID %s)\n", reaped, remaining, username, userID)
+		userIDStr := a.getUserId(username)
+		log.Printf("- [%d of %d] Unfollow: %s\t\t(UID %s)\n", reaped, remaining, username, userIDStr)
 
-		_, err := a.api.UnFollow(userID)
+		// Convert the user ID from a string to an int.
+		userID, err := strconv.Atoi(userIDStr)
+		if err != nil {
+			panic(err)
+		}
+
+		_, err = a.api.UnFollow(int64(userID))
 		if err != nil {
 			log.Panicf("Got error when unfollowing %s: %s", username, err)
 		}
@@ -68,10 +74,10 @@ func (a *App) massUnfollow() {
 
 // getUserId gets the Instagram user PK ID (an int64) as a string.
 func (a *App) getUserId(username string) string {
-	user, err := a.api.GetUsername(username)
+	user, err := a.api.GetUserByUsername(username)
 	if err != nil {
 		log.Panicf("Can't getUserId %s: %s", username, err)
 	}
 
-	return strconv.Itoa(int(user.User.Pk))
+	return strconv.Itoa(int(user.User.ID))
 }
