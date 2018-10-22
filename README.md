@@ -4,6 +4,26 @@
 Instagram "Following" list. Basically, it can unfollow all profiles that are
 not following you back.
 
+> :rotating_light: **NOTICE:** This project is no longer maintained.
+>
+> I no longer use Instagram and therefore have no way to test or maintain any
+> fixes to this program. It uses an upstream library that uses Instagram's
+> proprietary API (reverse-engineering what the official app does, to get to
+> features their public API doesn't allow/to circumvent all of that
+> nonsense).
+>
+> The proprietary API is subject to change (and they probably change it on
+> purpose now and again because they don't want people to use it) so this
+> program may break periodically. If upstream [ahmdrz/goinsta][1] continues
+> to work, this should too with a rebuild from source.
+>
+> Fork this project if you need to maintain it other than that.
+>
+> If you `go get` to install this it should probably (try to) build with
+> the latest `goinsta` library which _may_ work at any given time.
+>
+> --Kirsle
+
 ![Screenshot](https://raw.githubusercontent.com/kirsle/follow-sync/master/screenshot.png)
 
 It uses the Instagram unofficial API ([ahmdrz/goinsta][1]) to log in to your
